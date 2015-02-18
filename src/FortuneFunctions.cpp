@@ -13,6 +13,11 @@ FortuneAccess::FortuneAccess(const char *folder)
 	SetFolder(folder);
 }
 
+FortuneAccess::FortuneAccess()
+{
+
+}
+
 FortuneAccess::~FortuneAccess(void)
 {
 	MakeEmpty();

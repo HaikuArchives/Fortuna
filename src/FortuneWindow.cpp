@@ -1,22 +1,30 @@
 #include "FortuneWindow.h"
 #include <Alert.h>
-#include <View.h>
-#include <Button.h>
-#include <ScrollView.h>
 #include <Application.h>
+#include <Button.h>
+#include <FindDirectory.h>
+#include <Path.h>
 #include <Screen.h>
+#include <ScrollView.h>
+#include <View.h>
 
 #define M_GET_ANOTHER_FORTUNE 'gafn'
 #define M_ABOUT_REQUESTED 'abrq'
 
 FortuneWindow::FortuneWindow(void)
- : BWindow(BRect(0,0,300,300),"Fortune",B_DOCUMENT_WINDOW,B_ASYNCHRONOUS_CONTROLS),
- 	fFortune("/boot/beos/etc/fortunes")
+	: BWindow(BRect(0,0,300,300),"Fortune",B_DOCUMENT_WINDOW,B_ASYNCHRONOUS_CONTROLS),
+	fFortune()
 {
+	BPath path;	
+	find_directory(B_SYSTEM_DATA_DIRECTORY, &path);
+	path.Append("fortunes");
+
+	fFortune.SetFolder(path.Path());
+
 	BView *back = new BView(Bounds(),"background",B_FOLLOW_ALL, B_WILL_DRAW);
 	back->SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
 	AddChild(back);
-	
+
 	BButton *close = new BButton(BRect(0,0,1,1),"closebutton","Close",
 								new BMessage(B_QUIT_REQUESTED), B_FOLLOW_RIGHT | B_FOLLOW_BOTTOM);
 	close->ResizeToPreferred();
@@ -63,7 +71,9 @@ FortuneWindow::FortuneWindow(void)
 	{
 		fTextView->SetText("Fortuna had a problem getting a fortune.\n\n"
 			"Please make sure that you have installed fortune files to "
-			"the folder /boot/beos/etc/fortunes.");
+			"the folder ");
+		fTextView->Insert(path.Path());
+		fTextView->Insert(".");
 	}
 	
 	next->MakeFocus(true);
@@ -100,9 +110,15 @@ void FortuneWindow::MessageReceived(BMessage *msg)
 		}
 		else	
 		{
+			BPath path;	
+			find_directory(B_SYSTEM_DATA_DIRECTORY, &path);
+			path.Append("fortunes");
+	
 			fTextView->SetText("Fortuna had a problem getting a fortune.\n\n"
 				"Please make sure that you have installed fortune files to "
-				"the folder /boot/beos/etc/fortunes.");
+				"the folder ");
+			fTextView->Insert(path.Path());
+			fTextView->Insert(".");
 		}
 	}
 	else

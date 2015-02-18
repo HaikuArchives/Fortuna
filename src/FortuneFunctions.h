@@ -8,6 +8,7 @@ class FortuneAccess
 {
 public:
 	FortuneAccess(const char *folder);
+	FortuneAccess();
 	~FortuneAccess(void);
 	
 	status_t SetFolder(const char *folder);
