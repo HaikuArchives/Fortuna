@@ -3,4 +3,4 @@ Fortuna is a nice-looking graphical program which displays a fortune when your s
 
 (NOTE: Fortunes available in the "fortunes" branch.)
 # Screenshot
-![screenshot](https://github.com/nishanth1232/Fortuna/blob/master/images/screenshot.png)
+![screenshot](./images/screenshot.png)
