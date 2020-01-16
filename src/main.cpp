@@ -13,6 +13,8 @@ App::App(void)
  : BApplication("application/x-vnd.wgp-Fortuna")
 {
 	FortuneWindow *win = new FortuneWindow();
+
+	win->CenterOnScreen();
 	win->Show();
 }
 
