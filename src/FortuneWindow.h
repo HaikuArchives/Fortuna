@@ -11,8 +11,7 @@ public:
 	FortuneWindow(void);
 	bool QuitRequested(void);
 	void MessageReceived(BMessage *msg);
-	void FrameResized(float w, float h);
-	
+
 private:
 	BTextView *fTextView;
 	FortuneAccess fFortune;
