@@ -14,7 +14,7 @@
 
 FortuneWindow::FortuneWindow(void)
 	:
-	BWindow(BRect(0, 0, 300, 400), "Fortune", B_TITLED_WINDOW,
+	BWindow(BRect(0, 0, 300, 400), "Fortuna", B_TITLED_WINDOW,
 		B_AUTO_UPDATE_SIZE_LIMITS | B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS),
 	fFortune()
 {
